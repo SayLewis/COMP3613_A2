@@ -53,3 +53,12 @@ def update_user_role(id, newrole):
         db.session.commit()
         return True
     return False
+
+def update_user(id, username):
+    user = get_user(id)
+    if user:
+        user.username = username
+        db.session.add(user)
+        return db.session.commit()
+    return None
+    

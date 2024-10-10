@@ -23,17 +23,18 @@ def get_all_courses_json():
     courses = [course.get_json() for course in courses]
     return courses
 
-def update_course(id, attribute, content):
-    course = get_course(id)
+def update_course(course_id, attribute, content):
+    course = get_course(course_id)
     if course:
-        if attribute in [1]:
+        if attribute == "courseCode":
             course.courseCode = content
-        elif attribute in [2]:
+        elif attribute == "courseName":
             course.courseName = content
-        elif attribute in [3]:
+        elif attribute == "semester":
             course.semester = content
-        elif attribute in [4]:
+        elif attribute == "year":
             course.year = content
         db.session.add(course)
-        return db.session.commit()
+        db.session.commit()
+        return course  # Return the updated course object
     return None

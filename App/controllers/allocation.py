@@ -23,10 +23,10 @@ def get_allocates_by_staff(id):
 def get_allocate(id):
     return Allocation.query.get(id)
 
-def delete_allocate(id):
-    allocate = get_allocate(id)
-    if allocate:
-        db.session.delete(allocate)
-        db.session.commit()
+def delete_allocate(allocation_id):
+    allocation = get_allocate(allocation_id)
+    if allocation:
+        db.session.delete(allocation)
+        db.session.commit()  # Make sure changes are committed to the database
         return True
     return False
